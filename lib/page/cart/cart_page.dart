@@ -100,12 +100,15 @@ class _CartPageState extends State<CartPage> {
                                 Row(
                                   children: [
                                     InkWell(
-                                      onTap: ()=> cartController.removeAmountCart(id: data[index].productId!),
+                                      onTap: () =>
+                                          cartController.removeAmountCart(
+                                              id: data[index].productId!),
                                       child: Container(
                                         height: 30,
                                         width: 30,
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(5),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                           color: primaryColorAmber,
                                         ),
                                         child: Icon(
@@ -116,24 +119,26 @@ class _CartPageState extends State<CartPage> {
                                     ),
                                     SizedBox(width: 10),
                                     GetBuilder<CartController>(
-                                      builder: (context) {
-                                        return Text(
-                                          data[index].amout.toString(),
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            color: primaryColorBlack,
-                                          ),
-                                        );
-                                      }
-                                    ),
+                                        builder: (context) {
+                                      return Text(
+                                        data[index].amout.toString(),
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: primaryColorBlack,
+                                        ),
+                                      );
+                                    }),
                                     SizedBox(width: 10),
                                     InkWell(
-                                      onTap: ()=> cartController.addAmountToCart(id: data[index].productId!),
+                                      onTap: () =>
+                                          cartController.addAmountToCart(
+                                              id: data[index].productId!),
                                       child: Container(
                                         height: 30,
                                         width: 30,
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(5),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                           color: primaryColorGreen,
                                         ),
                                         child: Icon(
@@ -145,7 +150,8 @@ class _CartPageState extends State<CartPage> {
                                     Spacer(),
                                     IconButton(
                                         onPressed: () {
-                                          cartController.deleteCart(id: data[index].productId!);
+                                          cartController.deleteCart(
+                                              id: data[index].productId!);
                                         },
                                         icon: Icon(
                                           Icons.delete,
@@ -172,33 +178,33 @@ class _CartPageState extends State<CartPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-
-                        GetBuilder<CartController>(
-                          builder: (context) {
-                            return Text(
-                              "ລາຄາ: ${cartController.totalPrice.toString()} Kip",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: primaryColorWhite,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            );
-                          }
-                        ),
-                        Container(
-                          height: 60,
-                          width: 120,
-                          decoration: BoxDecoration(
-                            color: primaryColorWhite,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'ຊຳລະເງີນ',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: primaryColorBlack,
-                                fontWeight: FontWeight.bold,
+                        GetBuilder<CartController>(builder: (context) {
+                          return Text(
+                            "ລາຄາ: ${cartController.totalPrice.toString()} Kip",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: primaryColorWhite,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          );
+                        }),
+                        InkWell(
+                          onTap: () => Get.toNamed("/payment"),
+                          child: Container(
+                            height: 60,
+                            width: 120,
+                            decoration: BoxDecoration(
+                              color: primaryColorWhite,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'ຊຳລະເງີນ',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: primaryColorBlack,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),

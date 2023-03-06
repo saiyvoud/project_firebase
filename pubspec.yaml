@@ -44,6 +44,10 @@ dependencies:
   carousel_slider: ^4.2.1
   cached_network_image: ^3.2.3
   lottie: ^2.2.0
+  awesome_dialog: ^3.0.2
+  google_maps_flutter: ^2.2.4
+  location: ^4.4.0
+  geolocator: ^9.0.2
 
 dev_dependencies:
   flutter_test:

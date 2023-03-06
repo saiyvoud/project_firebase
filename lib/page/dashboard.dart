@@ -16,70 +16,72 @@ class _DashBoardPageState extends State<DashBoardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.indigo.shade800,
-      body: Column(
-        children: [
-          SizedBox(height: 100),
-          Center(
-            child: Text(
-              "Let's Get Start",
-              style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 100),
+            Center(
+              child: Text(
+                "Let's Get Start",
+                style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 50),
-          Image.asset(
-            "assets/images/dashboard.png",
-            height: 260,
-            fit: BoxFit.cover,
-          ),
-          SizedBox(height: 50),
-          InkWell(
-            onTap: () {
-              Get.toNamed("/register");
-            },
-            child: Container(
-              height: 60,
-              width: 300,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: Text(
-                  "Sign Up",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+            SizedBox(height: 50),
+            Image.asset(
+              "assets/images/dashboard.png",
+              height: 260,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(height: 50),
+            InkWell(
+              onTap: () {
+                Get.toNamed("/register");
+              },
+              child: Container(
+                height: 60,
+                width: 300,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: Text(
+                    "Sign Up",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Already Your Account!",
-                style: TextStyle(color: Colors.white),
-              ),
-              SizedBox(width: 10),
-              TextButton(
-                onPressed: () {
-                  Get.toNamed("/login");
-                },
-                child: Text(
-                  "Sign In",
-                  style: TextStyle(
-                      color: Colors.yellow, fontWeight: FontWeight.bold),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Already Your Account!",
+                  style: TextStyle(color: Colors.white),
                 ),
-              ),
-            ],
-          )
-        ],
+                SizedBox(width: 10),
+                TextButton(
+                  onPressed: () {
+                    Get.toNamed("/login");
+                  },
+                  child: Text(
+                    "Sign In",
+                    style: TextStyle(
+                        color: Colors.yellow, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
