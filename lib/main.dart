@@ -7,12 +7,14 @@ import 'package:get/get.dart';
 
 import 'controller/banner_controller.dart';
 import 'controller/cart_controller.dart';
+import 'controller/location_controller.dart';
 
 void main() async {
   Get.lazyPut(() => AuthController());
   Get.lazyPut(() => ProductController());
   Get.lazyPut(() => CartController());
   Get.lazyPut(() => BannerController());
+  Get.lazyPut(() => LocationController());
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());

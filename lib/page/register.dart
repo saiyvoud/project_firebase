@@ -2,8 +2,6 @@
 
 import 'package:e_commerces/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -18,6 +16,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController firstName = TextEditingController();
   final TextEditingController lastName = TextEditingController();
   final TextEditingController email = TextEditingController();
+   final TextEditingController phoneNumber = TextEditingController();
   final TextEditingController password = TextEditingController();
   final form = GlobalKey<FormState>();
   final AuthController authController = Get.put(AuthController());
@@ -149,6 +148,34 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                       SizedBox(height: 10),
+                       SizedBox(height: 10),
+                      Text("PhoneNumber"),
+                      SizedBox(height: 10),
+                      Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey.shade300,
+                        ),
+                        child: TextFormField(
+                          controller: phoneNumber,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "phoneNumber is require";
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            hintText: '20',
+                            prefixIcon: Icon(
+                              Icons.email,
+                              color: Colors.indigo.shade800,
+                            ),
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
                       Text("Password"),
                       SizedBox(height: 10),
                       Container(
@@ -199,6 +226,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   firstName: firstName.text.trim(),
                                   lastName: lastName.text.trim(),
                                   email: email.text.trim(),
+                                   phoneNumber: phoneNumber.text.trim(),
                                   password: password.text.trim());
                               // Get.snackbar(
                               //   "Register",

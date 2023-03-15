@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "536437775418",
-    "project_id": "ecomerces-a4c55",
-    "storage_bucket": "ecomerces-a4c55.appspot.com"
+    "project_number": "555800926328",
+    "project_id": "courses-a2381",
+    "storage_bucket": "courses-a2381.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:536437775418:android:0dbfc9b9e01483e7166903",
+        "mobilesdk_app_id": "1:555800926328:android:cc8f4dcbf196543347358d",
         "android_client_info": {
           "package_name": "com.e_comerces.shoppee"
         }
       },
       "oauth_client": [
         {
-          "client_id": "536437775418-7cqdav35jge2a2ao28ksqlf6r34g74u8.apps.googleusercontent.com",
+          "client_id": "555800926328-0o99o709hl95vroaq7ue63vdnr63skh8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAi83bQpzHkm9pA-M6BGqH__JwTB8zloO8"
+          "current_key": "AIzaSyAu_D2l4dcLXAm7ulSxVEPMvFK2-B5mW_Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "536437775418-7cqdav35jge2a2ao28ksqlf6r34g74u8.apps.googleusercontent.com",
+              "client_id": "555800926328-0o99o709hl95vroaq7ue63vdnr63skh8.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
