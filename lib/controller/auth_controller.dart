@@ -40,7 +40,7 @@ class AuthController extends GetxController {
       if (user == null) {
         Get.offAllNamed("/dashboard");
       } else {
-        Get.offAllNamed("/home");
+        Get.offAllNamed("/bottombar");
       }
     } catch (e) {
       rethrow;

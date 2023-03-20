@@ -1,6 +1,11 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerces/components/alert.dart';
 import 'package:e_commerces/components/color.dart';
 import 'package:e_commerces/components/loading.dart';
+import 'package:e_commerces/controller/order_controller.dart';
+import 'package:e_commerces/models/order_model.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,13 +24,15 @@ class _PaymentPageState extends State<PaymentPage> {
   final CartController cartController = Get.put(CartController());
   final AuthController authController = Get.put(AuthController());
   final LocationController locationController = Get.put(LocationController());
-
+  final OrderController orderController = Get.put(OrderController());
   @override
   void initState() {
     super.initState();
     locationController.getLocation();
     authController.getProfile();
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -141,48 +148,48 @@ class _PaymentPageState extends State<PaymentPage> {
                   ],
                 ),
                 SizedBox(height: 5),
-                locationController.locationModel.isEmpty ?   
-                  InkWell(
-                  onTap: () {
-                    Get.toNamed('/address');
-                  },
-                  child: Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.indigo.shade800,
-                    ),
-                    child: Center(
-                      child: Text(
-                        'ເພີ່ມເວລາຈັດສົ່ງ',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                locationController.locationModel.isEmpty
+                    ? InkWell(
+                        onTap: () {
+                          Get.toNamed('/address');
+                        },
+                        child: Container(
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.indigo.shade800,
+                          ),
+                          child: Center(
+                            child: Text(
+                              'ເພີ່ມເວລາຈັດສົ່ງ',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                ):
-
-                GetBuilder<LocationController>(builder: (context) {
-                  if (locationController.locationLoading.value) {
-                    return CircularProgressIndicator();
-                  } else {
-                    return Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("ວັນທີ່ ແລະ ເວລາຈັດສົ່ງ"),
-                            Text(locationController
-                                .locationModel[0].dateTime!)
-                          ],
-                        ),
-                        SizedBox(height: 10),
-                      ],
-                    );
-                  }
-                }),
+                      )
+                    : GetBuilder<LocationController>(builder: (context) {
+                        if (locationController.locationLoading.value) {
+                          return CircularProgressIndicator();
+                        } else {
+                          return Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("ວັນທີ່ ແລະ ເວລາຈັດສົ່ງ"),
+                                  Text(locationController
+                                      .locationModel[0].dateTime!)
+                                ],
+                              ),
+                              SizedBox(height: 10),
+                            ],
+                          );
+                        }
+                      }),
                 SizedBox(height: 10),
                 Container(
                   height: 10,
@@ -204,71 +211,71 @@ class _PaymentPageState extends State<PaymentPage> {
                     Spacer(),
                     IconButton(
                       icon: Icon(Icons.edit, color: Colors.amber),
-                      onPressed: () {
-                      
-                      },
+                      onPressed: () {},
                     ),
                   ],
                 ),
-                locationController.locationModel.isEmpty ?  
-                InkWell(
-                  onTap: () {
-                    Get.toNamed('/add_address');
-                  },
-                  child: Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.indigo.shade800,
-                    ),
-                    child: Center(
-                      child: Text(
-                        'ເພີ່ມທີ່ຢູ່ຈັດສົ່ງ',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                locationController.locationModel.isEmpty
+                    ? InkWell(
+                        onTap: () {
+                          Get.toNamed('/add_address');
+                        },
+                        child: Container(
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.indigo.shade800,
+                          ),
+                          child: Center(
+                            child: Text(
+                              'ເພີ່ມທີ່ຢູ່ຈັດສົ່ງ',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                )
-            :
-                   GetBuilder<LocationController>(builder: (context) {
-                  if (locationController.locationLoading.value) {
-                    return CircularProgressIndicator();
-                  } else {
-                    return Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("ບ້ານ"),
-                            Text(locationController
-                                .locationModel[0].village!)
-                          ],
-                        ),
-                        SizedBox(height: 10),
-                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("ເມືອງ"),
-                            Text(locationController
-                                .locationModel[0].district!)
-                          ],
-                        ),
-                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("ແຂວງ"),
-                            Text(locationController
-                                .locationModel[0].province!)
-                          ],
-                        ),
-                      ],
-                    );
-                  }
-                }),
-               
+                      )
+                    : GetBuilder<LocationController>(builder: (context) {
+                        if (locationController.locationLoading.value) {
+                          return CircularProgressIndicator();
+                        } else {
+                          return Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("ບ້ານ"),
+                                  Text(locationController
+                                      .locationModel[0].village!)
+                                ],
+                              ),
+                              SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("ເມືອງ"),
+                                  Text(locationController
+                                      .locationModel[0].district!)
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("ແຂວງ"),
+                                  Text(locationController
+                                      .locationModel[0].province!)
+                                ],
+                              ),
+                            ],
+                          );
+                        }
+                      }),
+
                 SizedBox(height: 10),
                 Container(
                   height: 10,
@@ -381,7 +388,28 @@ class _PaymentPageState extends State<PaymentPage> {
             ),
           )),
           bottomNavigationBar: InkWell(
-            onTap: () => showAlert(context),
+            onTap: () {
+              AwesomeDialog(
+                context: context,
+                dialogType: DialogType.warning,
+                animType: AnimType.rightSlide,
+                title: 'ແຈ້ງເຕືອນ',
+                desc: 'ທ່ານໝັ້ນໃຈບໍ່ວ່າຈະຊຳລະເງິນ!',
+                btnCancelOnPress: () {},
+                btnOkOnPress: () {
+                  orderController.saveOrder(
+                      orderModel: OrderModel(
+                    userId: authController.auth.currentUser!.uid,
+                    cartList: cartController.cartModelList,
+                    locationList: locationController.locationModel,
+                    userList: authController.userModel,
+                    totalPrice: cartController.totalPrice.toInt(),
+                    createdAt: DateTime.now(),
+                    updatedAt: DateTime.now(),
+                  ));
+                },
+              )..show();
+            },
             child: Container(
               height: 60,
               decoration: BoxDecoration(color: primaryColor),
